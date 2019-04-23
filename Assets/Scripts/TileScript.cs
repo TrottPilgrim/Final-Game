@@ -44,6 +44,10 @@ public class TileScript : MonoBehaviour
             else if (isSlerp)
             {
                 transform.localPosition = Vector3.Slerp(startPosition, destPosition, GridManager.slideLerp);
+                if (Vector3.Distance(transform.localPosition, destPosition) == 0) {
+                    Debug.Log("nlerp");
+                    isSlerp = false;
+                }
             }
             else
             {
@@ -80,6 +84,6 @@ public class TileScript : MonoBehaviour
 
     public void SetupSlerp(Vector2 newDestPos){
         SetupSlide(newDestPos);
-
+        isSlerp = true;
     }
 }

@@ -135,7 +135,6 @@ public class PlayerScript : MonoBehaviour
         int tempX = (int) playerPos.x;
         int tempY = (int) playerPos.y;
         GameObject temp = GridManager.tiles[tempX, tempY];
-        
         LerpRotate(GridManager.tiles[tempX, tempY], 
                 GridManager.tiles[tempX, tempY + 1], 
                 GridManager.tiles[tempX + 1, tempY + 1], 
@@ -182,7 +181,7 @@ public class PlayerScript : MonoBehaviour
         TileScript ts3 = g3.GetComponent<TileScript>();
         TileScript ts4 = g4.GetComponent<TileScript>();
         Vector2 temp = g1.transform.localPosition;
-        GridManager.slideLerp = 0.2f;
+        GridManager.slideLerp = 0.0f;
         if (string.Equals(d, "cw"))
         {
             ts1.SetupSlerp(g2.transform.localPosition);
