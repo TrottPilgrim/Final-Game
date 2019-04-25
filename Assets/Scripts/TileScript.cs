@@ -9,13 +9,13 @@ public class TileScript : MonoBehaviour
     public Color[] tileColors = 
     {
         Color.red,
-        new Color(0.96f, 0.63f, 0f, 1.0f), // Orange
+        //new Color(0.96f, 0.63f, 0f, 1.0f), // Orange
         Color.yellow,
         Color.green,
         Color.blue,
         new Color(0.65f, 0f, 0.96f, 1.0f), // Violet
         Color.white,
-        Color.gray
+        //Color.gray
     };
     public Sprite[] plantSprites;
     public Sprite seedling;
@@ -61,7 +61,7 @@ public class TileScript : MonoBehaviour
         }
         else if (transform.localScale != Vector3.one && GridManager.slideLerp < 0) {
 
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, 0.25f);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Random.Range(0.0f, 0.3f));
         }
     }
     public void SetSprite(int rand){
