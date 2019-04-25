@@ -121,7 +121,8 @@ public class GridManager : MonoBehaviour
                         Destroy(tiles[x + 1, y]);
                         Destroy(tiles[x + 2, y]);
                         scoreText.text = "SCORE: " + score;
-                        transform.GetChild(0).SendMessage("BeginContact");
+                        GrowPlants(temp.type);
+                        //transform.GetChild(0).SendMessage("BeginContact");
                         //playerScript.resetTurns(6);
                     }
                     if (y < HEIGHT - 2 && temp.IsMatch(tiles[x, y + 1], tiles[x, y + 2]))
@@ -138,7 +139,8 @@ public class GridManager : MonoBehaviour
                         Destroy(tiles[x, y + 1]);
                         Destroy(tiles[x, y + 2]);
                         scoreText.text = "SCORE: " + score;
-                        transform.GetChild(0).SendMessage("BeginContact");
+                        GrowPlants(temp.type);
+                        //transform.GetChild(0).SendMessage("BeginContact");
                         //playerScript.resetTurns(6);
                     }
                 }
@@ -188,6 +190,15 @@ public class GridManager : MonoBehaviour
             }
         }
         return repop;
+    }
+
+    void GrowPlants(int type) {
+        GameObject[] seeds = GameObject.FindGameObjectsWithTag("seed");
+        Debug.Log(seeds);
+        for (int  i = 0; i < seeds.Length; i++){
+            if (seeds[i].GetComponent<TileScript>().type == type)
+                seeds[i].SendMessage("GrowUp");
+        }
     }
 
     public override string ToString()

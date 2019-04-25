@@ -17,8 +17,18 @@ public class TileScript : MonoBehaviour
         Color.white,
         Color.gray
     };
+    public Sprite[] plantSprites;
+    public Sprite seedling;
+
+    SpriteRenderer tileSprite;
+
+    public Vector3 startPosition;
+    public Vector3 destPosition;
+    private bool inSlide = false;
+    private bool isSlerp = false;
     void Awake()
     {   
+        tileSprite = GetComponent<SpriteRenderer>();
         //This does some math on the colors, effectively makes them more pastel-y
         for (int q = 0; q < tileColors.Length; q++){
             tileColors[q] = new Color(0.5f, 0.5f, 0.5f, 1.0f) + 0.5f * tileColors[q];
@@ -26,14 +36,7 @@ public class TileScript : MonoBehaviour
         transform.localScale = new Vector3(0, 0, 0);
     }
 
-    // public Sprite[] tileColors;
-    public Sprite[] plantSprites;
-    public Sprite seedling;
 
-    public Vector3 startPosition;
-    public Vector3 destPosition;
-    private bool inSlide = false;
-    private bool isSlerp = false;
 
     void FixedUpdate(){
         if (inSlide){
@@ -66,14 +69,15 @@ public class TileScript : MonoBehaviour
         //GetComponent<SpriteRenderer>().sprite = tileSprites[type];
         if (rand >= 0)
         {
-            GetComponent<SpriteRenderer>().color = tileColors[type];
-            GetComponent<SpriteRenderer>().sprite = plantSprites[Random.Range(0, plantSprites.Length)];
+            tileSprite.color = tileColors[type];
+            tileSprite.sprite = plantSprites[Random.Range(0, plantSprites.Length)];
         }
-        if (Random.Range(0.0f, 1.0f) < 0.1f)
+        if (Random.Range(0.0f, 1.0f) < 0.25f)
         {
             isSeed = true;
-            GetComponent<SpriteRenderer>().sprite = seedling;
-            GetComponent<SpriteRenderer>().color *= new Color(0.7f, 0.7f, 0.7f, 1.0f);
+            this.tag = "seed";
+            tileSprite.sprite = seedling;
+            tileSprite.color *= new Color(0.8f, 0.8f, 0.8f, 1.0f);
         }
     }
 
@@ -95,5 +99,15 @@ public class TileScript : MonoBehaviour
     public void SetupSlerp(Vector2 newDestPos){
         SetupSlide(newDestPos);
         isSlerp = true;
+    }
+
+    public void GrowUp() {
+        isSeed = false;
+        this.tag = "Untagged";
+        tileSprite.color = tileColors[type];
+        tileSprite.sprite = plantSprites[Random.Range(0, plantSprites.Length)];
+        transform.localScale = Vector3.one * 0.5f;
+
+        return;
     }
 }
