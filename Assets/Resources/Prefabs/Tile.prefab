@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24792ad89d332ad46a0de5d59ab293c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSeed: 0
   type: 0
   tileColors:
   - {r: 1, g: 0, b: 0, a: 1}
@@ -106,6 +107,7 @@ MonoBehaviour:
   plantSprites:
   - {fileID: 21300000, guid: 3d76fa85a13a7954a8aa3e79fd4e83f2, type: 3}
   - {fileID: 21300000, guid: 0c1be166d040bdb469df621b30ff9191, type: 3}
+  seedling: {fileID: 21300000, guid: ad4dd849f4ad1524eabe921656fad0dd, type: 3}
   startPosition: {x: 0, y: 0, z: 0}
   destPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8935052067642496273

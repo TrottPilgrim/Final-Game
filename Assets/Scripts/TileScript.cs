@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TileScript : MonoBehaviour
 {
+    public bool isSeed = false;
     public int type;
     public Color[] tileColors = 
     {
@@ -27,6 +28,7 @@ public class TileScript : MonoBehaviour
 
     // public Sprite[] tileColors;
     public Sprite[] plantSprites;
+    public Sprite seedling;
 
     public Vector3 startPosition;
     public Vector3 destPosition;
@@ -39,7 +41,7 @@ public class TileScript : MonoBehaviour
             {
                 transform.localPosition = destPosition;
                 inSlide = false;
-                transform.GetChild(0).SendMessage("BeginContact");
+                //transform.GetChild(0).SendMessage("BeginContact");
             }
             else if (isSlerp)
             {
@@ -63,8 +65,16 @@ public class TileScript : MonoBehaviour
         type = rand;
         //GetComponent<SpriteRenderer>().sprite = tileSprites[type];
         if (rand >= 0)
+        {
             GetComponent<SpriteRenderer>().color = tileColors[type];
             GetComponent<SpriteRenderer>().sprite = plantSprites[Random.Range(0, plantSprites.Length)];
+        }
+        if (Random.Range(0.0f, 1.0f) < 0.1f)
+        {
+            isSeed = true;
+            GetComponent<SpriteRenderer>().sprite = seedling;
+            GetComponent<SpriteRenderer>().color *= new Color(0.7f, 0.7f, 0.7f, 1.0f);
+        }
     }
 
     public bool IsMatch(GameObject gameObject1, GameObject gameObject2){
@@ -72,7 +82,7 @@ public class TileScript : MonoBehaviour
         TileScript ts2 = gameObject2.GetComponent<TileScript>();
         /* if (ts1 != null && ts2 != null && type == ts1.type && type == ts2.type)
             Debug.Log(type + " " + ts1.type + " " + ts2.type); */
-        return ts1 != null && ts2 != null && type == ts1.type && type == ts2.type;
+        return ts1 != null && ts2 != null && type == ts1.type && type == ts2.type && !ts1.isSeed && !ts2.isSeed && !isSeed;
     }
 
     public void SetupSlide(Vector2 newDestPos){
