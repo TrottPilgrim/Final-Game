@@ -23,7 +23,8 @@ public class PlayerScript : MonoBehaviour
     }
 
     void FixedUpdate ()
-    {   if (GridManager.slideLerp < 0)
+    {   
+        if (GridManager.slideLerp < 0)
         {
             if (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -52,20 +53,22 @@ public class PlayerScript : MonoBehaviour
                 RotateCCW();
             }
         }
-        if (inSlide){
-                if (GridManager.slideLerp < 0)
-                {
-                    transform.localPosition = destPosition;
-                    inSlide = false;
-                }else
-                {
-                    transform.localPosition = Vector3.Lerp(startPosition, destPosition, GridManager.slideLerp);
-                }
+        if (inSlide)
+        {
+            if (GridManager.slideLerp < 0)
+            {
+                transform.localPosition = destPosition;
+                inSlide = false;
             }
+            else
+            {
+                transform.localPosition = Vector3.Lerp(startPosition, destPosition, GridManager.slideLerp);
+            }
+        }
     }
     
     void Move (int x, int y)
-    {
+    {   
         Vector2 oldLoc = new Vector2(playerPos.x, playerPos.y);
         Vector2 newLoc = new Vector2(playerPos.x + x, playerPos.y + y);
         if ((int) newLoc.x < GridManager.WIDTH - 1 &&
@@ -74,10 +77,7 @@ public class PlayerScript : MonoBehaviour
             (int) newLoc.y >= 0)
         {
             playerPos = newLoc;
-            // Debug.Log("new log" + newLoc.x + " " + newLoc.y);
-            //Vector2 newLocPos = new Vector2(GridManager.WIDTH - newLoc.x - GridManager.xOffset, GridManager.HEIGHT - newLoc.y - GridManager.yOffset);
-            //this.transform.localPosition = newLocPos;
-            GridManager.slideLerp = 0.7f;
+            GridManager.slideLerp = 0.5f;
             SetupSlide(GridManager.tiles[(int) newLoc.x, (int) newLoc.y].transform.localPosition);
         }
     }

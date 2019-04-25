@@ -45,7 +45,7 @@ public class TileScript : MonoBehaviour
             {
                 transform.localPosition = Vector3.Slerp(startPosition, destPosition, GridManager.slideLerp);
                 if (Vector3.Distance(transform.localPosition, destPosition) == 0) {
-                    Debug.Log("nlerp");
+                    //Debug.Log("nlerp");
                     isSlerp = false;
                 }
             }
@@ -54,9 +54,9 @@ public class TileScript : MonoBehaviour
                 transform.localPosition = Vector3.Lerp(startPosition, destPosition, GridManager.slideLerp);
             }
         }
-        if (transform.localScale != Vector3.one) {
+        else if (transform.localScale != Vector3.one && GridManager.slideLerp < 0) {
 
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, 0.05f);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, 0.25f);
         }
     }
     public void SetSprite(int rand){

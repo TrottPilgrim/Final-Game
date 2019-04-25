@@ -10,8 +10,8 @@ public class GridManager : MonoBehaviour
     public static GameObject[,] tiles;
     public GameObject tilePrefab;
     public GameObject playerFab;
-    public const int WIDTH = 7;
-    public const int HEIGHT = 5;
+    public const int WIDTH = 11;
+    public const int HEIGHT = 7;
 
     public const float xOffset = WIDTH / 2f - 0.5f;
     public const float yOffset = HEIGHT / 2f - 0.5f;
@@ -152,10 +152,11 @@ public class GridManager : MonoBehaviour
             for (int y = 0; y < HEIGHT; y++){
                 //Check if there is an empty spot in the array
                 if (tiles[x, y] == null){
+                    //Instantiates the new flowers at the top and lerps them down
                     //The game knows we're about to repopulate
                     repop = true;
                     //Check if we're on the top row of the grid
-                    if (y == 0){
+                     if (y == 0){
                         //If so, make a token
                         tiles[x, y] = Instantiate(tilePrefab);
                         tiles[x, y].name = x + "," + y;
@@ -175,7 +176,14 @@ public class GridManager : MonoBehaviour
                             tiles[x, y - 1] = null;
                             //tiles[x, y].transform.localPosition = Vector3.Lerp(tileScript.startPosition, tileScript.destPosition, lerpSpeed);
                         }
-                    } 
+                    }
+
+                    // //Instantiates the new flowers in place
+                    // tiles[x, y] = Instantiate(tilePrefab);
+                    // TileScript tileScript = tiles[x, y].GetComponent<TileScript>();
+                    // tileScript.SetSprite(Random.Range(0, tileScript.tileColors.Length));
+                    // tiles[x, y].transform.parent = gridHolder.transform;
+                    // tiles[x, y].transform.localPosition = new Vector2 (WIDTH - x - xOffset, HEIGHT - y - yOffset);
                 }
             }
         }
