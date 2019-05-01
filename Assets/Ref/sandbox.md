@@ -42,3 +42,44 @@ void Update () {
 }
 
 ```
+
+
+```c#
+//tilescript.cs
+//Rotation
+bool isRustle;
+float timer;
+
+void FixedUpdate() 
+{
+  timer += Time.deltaTime;
+  if (!isRustle)
+}
+
+
+void RustleLeaves() 
+{
+  isRustle = true;
+  
+  {
+    this.transform.Rotate(0, 0, Mathf.sin(timer) * 0.1f, Space.Self);
+  }
+}
+```
+
+```c#
+using UnityEngine;
+public class example : Monobehavior
+{
+
+  void Movement()
+  {
+    Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //Vector2 mouseVec2 = new Vector2(mouseRay.origin.x, mouseRay.origin.y);
+
+    RaycastHit2D rayhitUp = Physics2D.Raycast(mouseRay.origin, Vector2.up);
+    RaycastHit2D rayhitRight = Physics2D.Raycast(mouseRay.origin, Vector2.right);
+
+  }
+}
+```

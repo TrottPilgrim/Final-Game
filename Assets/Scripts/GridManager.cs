@@ -17,11 +17,8 @@ public class GridManager : MonoBehaviour
     public const float yOffset = HEIGHT / 2f - 0.5f;
 
     GameObject gridHolder;
+    public GameObject explosion;
     PlayerScript playerScript;
-
-    public ParticleSystem explosion1;
-    public ParticleSystem explosion2;
-    public ParticleSystem explosion3;
     public static float slideLerp = -1f;
     public float lerpSpeed;
     
@@ -109,17 +106,25 @@ public class GridManager : MonoBehaviour
                 if (temp is object){
                     if (x < WIDTH - 2 && temp.IsMatch(tiles[x + 1, y], tiles[x + 2, y]))
                     {
-                        explosion1.transform.position = tiles[x, y].transform.position;
-                        explosion1.Play();
-                        explosion2.transform.position = tiles[x + 1, y].transform.position;
-                        explosion2.Play();
-                        explosion3.transform.position = tiles[x + 2, y].transform.position;
-                        explosion3.Play();
+                        // explosion1.transform.position = tiles[x, y].transform.position;
+                        // explosion1.Play();
+                        // explosion2.transform.position = tiles[x + 1, y].transform.position;
+                        // explosion2.Play();
+                        // explosion3.transform.position = tiles[x + 2, y].transform.position;
+                        // explosion3.Play();
+
+                        ParticleSystem e0 = Instantiate(explosion, tiles[x, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+                        ParticleSystem e1 = Instantiate(explosion, tiles[x + 1, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+                        ParticleSystem e2 = Instantiate(explosion, tiles[x + 2, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+                        e0.Play(); e1.Play(); e2.Play();
                         score += 1;
                         //Debug.Log("Horizontal Match " + x + " " + y);
                         Destroy(tiles[x, y]);
                         Destroy(tiles[x + 1, y]);
                         Destroy(tiles[x + 2, y]);
+                        Destroy(e0.gameObject, 3f);
+                        Destroy(e1.gameObject, 3f);
+                        Destroy(e2.gameObject, 3f);
                         scoreText.text = "SCORE: " + score;
                         GrowPlants(temp.type);
                         //transform.GetChild(0).SendMessage("BeginContact");
@@ -127,17 +132,25 @@ public class GridManager : MonoBehaviour
                     }
                     if (y < HEIGHT - 2 && temp.IsMatch(tiles[x, y + 1], tiles[x, y + 2]))
                     {   
-                        explosion1.transform.position = tiles[x, y].transform.position;
-                        explosion1.Play();
-                        explosion2.transform.position = tiles[x, y + 1].transform.position;
-                        explosion2.Play();
-                        explosion3.transform.position = tiles[x, y + 2].transform.position;
-                        explosion3.Play();
+                        // explosion1.transform.position = tiles[x, y].transform.position;
+                        // explosion1.Play();
+                        // explosion2.transform.position = tiles[x, y + 1].transform.position;
+                        // explosion2.Play();
+                        // explosion3.transform.position = tiles[x, y + 2].transform.position;
+                        // explosion3.Play();
+
+                        ParticleSystem e0 = Instantiate(explosion, tiles[x, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+                        ParticleSystem e1 = Instantiate(explosion, tiles[x, y + 1].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+                        ParticleSystem e2 = Instantiate(explosion, tiles[x, y + 2].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+                        e0.Play(); e1.Play(); e2.Play();
                         score += 1;
                         //Debug.Log("Vertical Match " + x + " " + y);
                         Destroy(tiles[x, y]);
                         Destroy(tiles[x, y + 1]);
                         Destroy(tiles[x, y + 2]);
+                        Destroy(e0.gameObject, 3f);
+                        Destroy(e1.gameObject, 3f);
+                        Destroy(e2.gameObject, 3f);
                         scoreText.text = "SCORE: " + score;
                         GrowPlants(temp.type);
                         //transform.GetChild(0).SendMessage("BeginContact");

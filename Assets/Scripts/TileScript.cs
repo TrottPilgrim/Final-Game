@@ -26,8 +26,10 @@ public class TileScript : MonoBehaviour
     public Vector3 destPosition;
     private bool inSlide = false;
     private bool isSlerp = false;
+    float swayOffset;
     void Awake()
     {   
+        swayOffset = Random.Range(0.0f, 2.0f);
         tileSprite = GetComponent<SpriteRenderer>();
         //This does some math on the colors, effectively makes them more pastel-y
         for (int q = 0; q < tileColors.Length; q++){
@@ -39,7 +41,8 @@ public class TileScript : MonoBehaviour
 
 
     void FixedUpdate(){
-        if (inSlide){
+        if (inSlide)
+        {
             if (GridManager.slideLerp < 0)
             {
                 transform.localPosition = destPosition;
@@ -59,9 +62,13 @@ public class TileScript : MonoBehaviour
                 transform.localPosition = Vector3.Lerp(startPosition, destPosition, GridManager.slideLerp);
             }
         }
-        else if (transform.localScale != Vector3.one && GridManager.slideLerp < 0) {
-
+        else if (transform.localScale != Vector3.one && GridManager.slideLerp < 0) 
+        {
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Random.Range(0.0f, 0.3f));
+        }
+        if (!isSeed)
+        {   
+            transform.rotation *= Quaternion.Euler( 0, 0, Mathf.Sin(Time.time * 2 + swayOffset) * 0.3f);
         }
     }
     public void SetSprite(int rand){
