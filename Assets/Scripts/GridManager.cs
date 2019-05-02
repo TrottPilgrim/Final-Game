@@ -34,7 +34,7 @@ public class GridManager : MonoBehaviour
         
         tiles = new GameObject[WIDTH, HEIGHT];
         gridHolder = new GameObject();
-        gridHolder.transform.position = new Vector3(-1f, -0.5f, 0);
+        gridHolder.transform.position = new Vector3(-1f, -1f, 0);
         
         for (int i = 0; i < WIDTH; i++){
             for (int j = 0; j < HEIGHT; j++){
