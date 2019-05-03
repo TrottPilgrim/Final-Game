@@ -6,6 +6,8 @@ public class TileScript : MonoBehaviour
 {
     public bool isSeed = false;
     public int type;
+
+    public Vector2 gridLoc;
     public Color[] tileColors = 
     {
         Color.red,
@@ -62,7 +64,7 @@ public class TileScript : MonoBehaviour
                 transform.localPosition = Vector3.Lerp(startPosition, destPosition, GridManager.slideLerp);
             }
         }
-        else if (transform.localScale != Vector3.one && GridManager.slideLerp < 0) 
+        else if (transform.localScale != Vector3.one) 
         {
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Random.Range(0.0f, 0.3f));
         }

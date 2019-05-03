@@ -77,12 +77,13 @@ public class PlayerScript : MonoBehaviour
             (int) newLoc.y >= 0)
         {
             playerPos = newLoc;
-            GridManager.slideLerp = 0.5f;
+            //GridManager.slideLerp = -1f;
             SetupSlide(GridManager.tiles[(int) newLoc.x, (int) newLoc.y].transform.localPosition);
         }
     }
 
-    public void SetupSlide(Vector2 newDestPos){
+    public void SetupSlide(Vector2 newDestPos)
+    {
         inSlide = true;
         startPosition = transform.localPosition;
         destPosition = newDestPos;
@@ -181,7 +182,7 @@ public class PlayerScript : MonoBehaviour
         TileScript ts3 = g3.GetComponent<TileScript>();
         TileScript ts4 = g4.GetComponent<TileScript>();
         Vector2 temp = g1.transform.localPosition;
-        GridManager.slideLerp = 0.0f;
+        GridManager.slideLerp = 0.1f;
         if (string.Equals(d, "cw"))
         {
             ts1.SetupSlerp(g2.transform.localPosition);

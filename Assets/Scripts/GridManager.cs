@@ -50,6 +50,7 @@ public class GridManager : MonoBehaviour
                 tiles[i, j] = newTile;
                 TileScript tileScript = newTile.GetComponent<TileScript>();
                 tileScript.SetSprite(Random.Range(0, tileScript.tileColors.Length));
+                tileScript.gridLoc = new Vector2(i, j);
             }
         }
         score = 0;
