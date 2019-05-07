@@ -71,6 +71,7 @@ public class TileScript : MonoBehaviour
         if (!isSeed)
         {   
             transform.rotation *= Quaternion.Euler( 0, 0, Mathf.Sin(Time.time * 2 + swayOffset) * 0.3f);
+            //transform.GetChild(0).rotation *= Quaternion.Inverse(Quaternion.Euler( 0, 0, Mathf.Sin(Time.time * 2 + swayOffset) * 0.3f));
         }
     }
     public void SetSprite(int rand){
@@ -87,6 +88,7 @@ public class TileScript : MonoBehaviour
             this.tag = "seed";
             tileSprite.sprite = seedling;
             tileSprite.color *= new Color(0.8f, 0.8f, 0.8f, 1.0f);
+            transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
@@ -105,10 +107,10 @@ public class TileScript : MonoBehaviour
         //this.gameObject.name = this.gameObject.name + " " + destPosition.x + " " + destPosition.y + "|";
     }
 
-    public void SetupSlerp(Vector2 newDestPos){
-        SetupSlide(newDestPos);
-        isSlerp = true;
-    }
+    // public void SetupSlerp(Vector2 newDestPos){
+    //     SetupSlide(newDestPos);
+    //     isSlerp = true;
+    // }
 
     public void GrowUp() {
         isSeed = false;
@@ -116,6 +118,7 @@ public class TileScript : MonoBehaviour
         tileSprite.color = tileColors[type];
         tileSprite.sprite = plantSprites[Random.Range(0, plantSprites.Length)];
         transform.localScale = Vector3.one * 0.5f;
+        transform.GetChild(0).gameObject.SetActive(false);
 
         return;
     }

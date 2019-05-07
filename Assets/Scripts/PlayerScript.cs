@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour
         //resetTurns(100);
     }
 
-    void FixedUpdate ()
+    void Update ()
     {   
         if (GridManager.slideLerp < 0)
         {
@@ -77,7 +77,7 @@ public class PlayerScript : MonoBehaviour
             (int) newLoc.y >= 0)
         {
             playerPos = newLoc;
-            //GridManager.slideLerp = -1f;
+            GridManager.slideLerp = 0.3f;
             SetupSlide(GridManager.tiles[(int) newLoc.x, (int) newLoc.y].transform.localPosition);
         }
     }
@@ -152,12 +152,12 @@ public class PlayerScript : MonoBehaviour
 
 
     }
-
-    public void decrementTurns()
-    {
-        turnsRemaining--;
-        //turnsText.text = "" + turnsRemaining;
-    }
+    //deprecated
+    // public void decrementTurns()
+    // {
+    //     turnsRemaining--;
+    //     //turnsText.text = "" + turnsRemaining;
+    // }
 
     public void EndGame(){
         Debug.Log("Game over!");
@@ -176,6 +176,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     // g1 is UR, g2 is BR, g3 is LR, g4 is UR
+    //This one does the real in-scene rotation
     void LerpRotate(GameObject g1, GameObject g2, GameObject g3, GameObject g4, string d){
         TileScript ts1 = g1.GetComponent<TileScript>();
         TileScript ts2 = g2.GetComponent<TileScript>();
@@ -185,17 +186,17 @@ public class PlayerScript : MonoBehaviour
         GridManager.slideLerp = 0.1f;
         if (string.Equals(d, "cw"))
         {
-            ts1.SetupSlerp(g2.transform.localPosition);
-            ts2.SetupSlerp(g3.transform.localPosition);
-            ts3.SetupSlerp(g4.transform.localPosition);
-            ts4.SetupSlerp(temp);
+            ts1.SetupSlide(g2.transform.localPosition);
+            ts2.SetupSlide(g3.transform.localPosition);
+            ts3.SetupSlide(g4.transform.localPosition);
+            ts4.SetupSlide(temp);
         }
         else
         {
-            ts1.SetupSlerp(g4.transform.localPosition);
-            ts2.SetupSlerp(temp);
-            ts3.SetupSlerp(g2.transform.localPosition);
-            ts4.SetupSlerp(g3.transform.localPosition);
+            ts1.SetupSlide(g4.transform.localPosition);
+            ts2.SetupSlide(temp);
+            ts3.SetupSlide(g2.transform.localPosition);
+            ts4.SetupSlide(g3.transform.localPosition);
         }
         //gm.ToString();
     }

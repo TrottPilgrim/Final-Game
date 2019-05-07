@@ -167,8 +167,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6213901654362124861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 1}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -0.5, y: -0.25, z: 1}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 1}
   m_Children: []
   m_Father: {fileID: 2497258507489468006}
   m_RootOrder: 0
@@ -209,7 +209,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5d0d09680b4f33346a7b9ef187e5c680, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -228,11 +228,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2497258507489468006}
     m_Modifications:
-    - target: {fileID: 575177042444197822, guid: a63325e3bc928714982ada2fcb623e34,
-        type: 3}
-      propertyPath: m_Name
-      value: Sparkle
-      objectReference: {fileID: 0}
     - target: {fileID: 3464913282114583709, guid: a63325e3bc928714982ada2fcb623e34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -287,6 +282,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 575177042444197822, guid: a63325e3bc928714982ada2fcb623e34,
+        type: 3}
+      propertyPath: m_Name
+      value: Sparkle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a63325e3bc928714982ada2fcb623e34, type: 3}
