@@ -15,6 +15,8 @@ public class TitleScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
+            BackgroundAudio.Instance.PlaySound("click");
+            BackgroundAudio.Instance.swapGame.TransitionTo(10f);
             SceneManager.LoadScene("SwapGame");
         }
     }

@@ -83,6 +83,10 @@ public class GridManager : MonoBehaviour
             if (slideLerp >= 1)
                 slideLerp = -1;
         }
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            Destroy(BackgroundAudio.Instance);
+        }
     }
     //Hasmatch returns an object that has a matching object vertically or horizontally
     public TileScript HasMatch(){
@@ -208,7 +212,7 @@ public class GridManager : MonoBehaviour
 
     void GrowPlants(int type) {
         GameObject[] seeds = GameObject.FindGameObjectsWithTag("seed");
-        Debug.Log(seeds);
+        //Debug.Log(seeds);
         for (int  i = 0; i < seeds.Length; i++){
             if (seeds[i].GetComponent<TileScript>().type == type)
                 seeds[i].SendMessage("GrowUp");

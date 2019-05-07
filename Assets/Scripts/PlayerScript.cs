@@ -45,11 +45,13 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
             {
                 // Debug.Log("hi");
+                //BackgroundAudio.Instance.PlaySound("click");
                 RotateCW();
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 // Debug.Log("hi");
+                //BackgroundAudio.Instance.PlaySound("click");
                 RotateCCW();
             }
         }
