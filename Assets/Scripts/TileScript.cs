@@ -70,7 +70,7 @@ public class TileScript : MonoBehaviour
         }
         if (!isSeed)
         {   
-            transform.rotation *= Quaternion.Euler( 0, 0, Mathf.Sin(Time.time * 2 + swayOffset) * 0.3f);
+            transform.rotation *= Quaternion.Euler( 0, 0, Mathf.Sin(Time.time + swayOffset * 2 ) * 0.2f);
             //transform.GetChild(0).rotation *= Quaternion.Inverse(Quaternion.Euler( 0, 0, Mathf.Sin(Time.time * 2 + swayOffset) * 0.3f));
         }
     }
