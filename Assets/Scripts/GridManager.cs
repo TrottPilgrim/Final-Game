@@ -83,10 +83,6 @@ public class GridManager : MonoBehaviour
             if (slideLerp >= 1)
                 slideLerp = -1;
         }
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            Destroy(BackgroundAudio.Instance);
-        }
     }
     //Hasmatch returns an object that has a matching object vertically or horizontally
     public TileScript HasMatch(){

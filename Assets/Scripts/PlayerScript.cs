@@ -54,6 +54,10 @@ public class PlayerScript : MonoBehaviour
                 //BackgroundAudio.Instance.PlaySound("click");
                 RotateCCW();
             }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("SwapGame");
+            }
         }
         if (inSlide)
         {
