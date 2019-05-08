@@ -113,7 +113,7 @@ public class GridManager : MonoBehaviour
                         // explosion2.Play();
                         // explosion3.transform.position = tiles[x + 2, y].transform.position;
                         // explosion3.Play();
-
+                        BackgroundAudio.Instance.PlaySound("pop");
                         ParticleSystem e0 = Instantiate(explosion, tiles[x, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
                         ParticleSystem e1 = Instantiate(explosion, tiles[x + 1, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
                         ParticleSystem e2 = Instantiate(explosion, tiles[x + 2, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
@@ -133,6 +133,7 @@ public class GridManager : MonoBehaviour
                     }
                     if (y < HEIGHT - 2 && temp.IsMatch(tiles[x, y + 1], tiles[x, y + 2]))
                     {   
+                        BackgroundAudio.Instance.PlaySound("pop");
                         // explosion1.transform.position = tiles[x, y].transform.position;
                         // explosion1.Play();
                         // explosion2.transform.position = tiles[x, y + 1].transform.position;

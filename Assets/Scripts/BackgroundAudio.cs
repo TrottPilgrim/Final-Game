@@ -6,7 +6,15 @@ using UnityEngine.Audio;
 public class BackgroundAudio : MonoBehaviour
 {
     public static BackgroundAudio Instance;
-    public AudioClip[] stings;
+    [System.Serializable]
+    public struct NamedAudio {
+        public string name;
+        public AudioClip clip;
+    }
+
+    public NamedAudio[] stings;
+    // public AudioClip[] stings;
+    public Dictionary<string, AudioClip> stingsDict = new Dictionary<string, AudioClip>();
     public AudioSource stingSource;
 
     public AudioMixerSnapshot titleScreen;
@@ -15,23 +23,17 @@ public class BackgroundAudio : MonoBehaviour
     void Start()
     {
         Instance = this;
+        foreach (NamedAudio s in stings)
+        {
+            stingsDict.Add(s.name, s.clip);
+        }
         DontDestroyOnLoad(Instance);
         stingSource = transform.GetChild(0).GetComponent<AudioSource>();
     }
 
     public void PlaySound(string s)
     {
-        AudioClip nextClip;
-        switch(s)
-        {
-            case "click" :
-                nextClip = stings[0];
-                break;
-            default:
-                nextClip = stings[0];
-                break;
-        }
-        stingSource.clip = nextClip;
+        stingSource.clip = stingsDict[s];
         stingSource.Play();
     }
 }

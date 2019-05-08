@@ -437,8 +437,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stings:
-  - {fileID: 8300000, guid: 63a0c26642cec6b46905fa3563639053, type: 3}
-  stingSource: {fileID: 0}
+  - name: click
+    clip: {fileID: 8300000, guid: 63a0c26642cec6b46905fa3563639053, type: 3}
+  - name: swoosh
+    clip: {fileID: 8300000, guid: 13b36459f8e88594d8f193e26c8c8c95, type: 3}
+  - name: pop
+    clip: {fileID: 8300000, guid: 1394d4e65c161f84bb41f95c0dc61233, type: 3}
+  stingSource: {fileID: 1784650014}
   titleScreen: {fileID: 24500006, guid: 7cde96d481144254cb5275e45a54a828, type: 2}
   swapGame: {fileID: 245946528646159366, guid: 7cde96d481144254cb5275e45a54a828, type: 2}
 --- !u!1 &948598001

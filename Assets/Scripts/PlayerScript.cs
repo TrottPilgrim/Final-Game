@@ -80,7 +80,8 @@ public class PlayerScript : MonoBehaviour
         if ((int) newLoc.x < GridManager.WIDTH - 1 &&
             (int) newLoc.x >= 0 &&
             (int) newLoc.y < GridManager.HEIGHT - 1 &&
-            (int) newLoc.y >= 0)
+            (int) newLoc.y >= 0 &&
+            GridManager.tiles[(int) newLoc.x, (int) newLoc.y] is object)
         {
             playerPos = newLoc;
             GridManager.slideLerp = 0.3f;
@@ -184,6 +185,7 @@ public class PlayerScript : MonoBehaviour
     // g1 is UR, g2 is BR, g3 is LR, g4 is UR
     //This one does the real in-scene rotation
     void LerpRotate(GameObject g1, GameObject g2, GameObject g3, GameObject g4, string d){
+        BackgroundAudio.Instance.PlaySound("swoosh");
         TileScript ts1 = g1.GetComponent<TileScript>();
         TileScript ts2 = g2.GetComponent<TileScript>();
         TileScript ts3 = g3.GetComponent<TileScript>();
