@@ -25,6 +25,9 @@ public class GridManager : MonoBehaviour
     //Score + text
     private int score;
     public Text scoreText;
+    bool changedState = false;
+    bool transitioning = false;
+    public Image[] backgrounds;
 
     //public bool growth;
 
@@ -83,6 +86,10 @@ public class GridManager : MonoBehaviour
             if (slideLerp >= 1)
                 slideLerp = -1;
         }
+        if (transitioning)
+        {
+            LerpBtwBackgrounds();
+        }
     }
     //Hasmatch returns an object that has a matching object vertically or horizontally
     public TileScript HasMatch(){
@@ -107,12 +114,6 @@ public class GridManager : MonoBehaviour
                 if (temp is object){
                     if (x < WIDTH - 2 && temp.IsMatch(tiles[x + 1, y], tiles[x + 2, y]))
                     {
-                        // explosion1.transform.position = tiles[x, y].transform.position;
-                        // explosion1.Play();
-                        // explosion2.transform.position = tiles[x + 1, y].transform.position;
-                        // explosion2.Play();
-                        // explosion3.transform.position = tiles[x + 2, y].transform.position;
-                        // explosion3.Play();
                         BackgroundAudio.Instance.PlaySound("pop");
                         ParticleSystem e0 = Instantiate(explosion, tiles[x, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
                         ParticleSystem e1 = Instantiate(explosion, tiles[x + 1, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
@@ -130,17 +131,13 @@ public class GridManager : MonoBehaviour
                         GrowPlants(temp.type);
                         //transform.GetChild(0).SendMessage("BeginContact");
                         //playerScript.resetTurns(6);
+                        if (score == 1 && !changedState){
+                            TransitionToNextState();
+                        }
                     }
                     if (y < HEIGHT - 2 && temp.IsMatch(tiles[x, y + 1], tiles[x, y + 2]))
                     {   
                         BackgroundAudio.Instance.PlaySound("pop");
-                        // explosion1.transform.position = tiles[x, y].transform.position;
-                        // explosion1.Play();
-                        // explosion2.transform.position = tiles[x, y + 1].transform.position;
-                        // explosion2.Play();
-                        // explosion3.transform.position = tiles[x, y + 2].transform.position;
-                        // explosion3.Play();
-
                         ParticleSystem e0 = Instantiate(explosion, tiles[x, y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
                         ParticleSystem e1 = Instantiate(explosion, tiles[x, y + 1].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
                         ParticleSystem e2 = Instantiate(explosion, tiles[x, y + 2].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
@@ -157,6 +154,9 @@ public class GridManager : MonoBehaviour
                         GrowPlants(temp.type);
                         //transform.GetChild(0).SendMessage("BeginContact");
                         //playerScript.resetTurns(6);
+                        if (score == 1 && !changedState){
+                            TransitionToNextState();
+                        }
                     }
                 }
             }
@@ -215,6 +215,27 @@ public class GridManager : MonoBehaviour
                 seeds[i].SendMessage("GrowUp");
         }
     }
+
+    void TransitionToNextState()
+    {
+        Debug.Log("I'm a believer");
+        changedState = true;
+        BackgroundAudio.Instance.nearingEnd.TransitionTo(3f);
+        BackgroundAudio.Instance.GetComponents<AudioSource>()[1].PlayDelayed(3f);
+        transitioning = true;
+    }
+
+    void LerpBtwBackgrounds()
+    {
+        Image bg0 = GameObject.Find("Background").GetComponent<Image>();
+        Image bg1 = GameObject.Find("Background (1)").GetComponent<Image>();
+        if (bg0.color.a > 0) {
+            bg0.color -= new Color (0, 0, 0, 0.01f);
+            bg1.color += new Color (0, 0, 0, 0.01f);
+
+        }
+    }
+
 
     public override string ToString()
     {

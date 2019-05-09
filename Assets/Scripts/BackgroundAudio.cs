@@ -9,16 +9,17 @@ public class BackgroundAudio : MonoBehaviour
     [System.Serializable]
     public struct NamedAudio {
         public string name;
-        public AudioClip clip;
+        public AudioClip[] clip;
     }
 
     public NamedAudio[] stings;
     // public AudioClip[] stings;
-    public Dictionary<string, AudioClip> stingsDict = new Dictionary<string, AudioClip>();
+    public Dictionary<string, AudioClip[]> stingsDict = new Dictionary<string, AudioClip[]>();
     public AudioSource stingSource;
 
     public AudioMixerSnapshot titleScreen;
     public AudioMixerSnapshot swapGame;
+    public AudioMixerSnapshot nearingEnd;
     
     void Start()
     {
@@ -27,13 +28,14 @@ public class BackgroundAudio : MonoBehaviour
         {
             stingsDict.Add(s.name, s.clip);
         }
+
         DontDestroyOnLoad(Instance);
         stingSource = transform.GetChild(0).GetComponent<AudioSource>();
     }
 
     public void PlaySound(string s)
     {
-        stingSource.clip = stingsDict[s];
+        stingSource.clip = stingsDict[s][Random.Range(0, stingsDict[s].Length)];
         stingSource.Play();
     }
 }

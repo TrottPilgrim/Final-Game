@@ -42,7 +42,7 @@ public class TileScript : MonoBehaviour
 
 
 
-    void FixedUpdate(){
+    void Update(){
         if (inSlide)
         {
             if (GridManager.slideLerp < 0)
@@ -51,14 +51,14 @@ public class TileScript : MonoBehaviour
                 inSlide = false;
                 //transform.GetChild(0).SendMessage("BeginContact");
             }
-            else if (isSlerp)
-            {
-                transform.localPosition = Vector3.Slerp(startPosition, destPosition, GridManager.slideLerp);
-                if (Vector3.Distance(transform.localPosition, destPosition) == 0) {
-                    //Debug.Log("nlerp");
-                    isSlerp = false;
-                }
-            }
+            // else if (isSlerp)
+            // {
+            //     transform.localPosition = Vector3.Slerp(startPosition, destPosition, GridManager.slideLerp);
+            //     if (Vector3.Distance(transform.localPosition, destPosition) == 0) {
+            //         //Debug.Log("nlerp");
+            //         isSlerp = false;
+            //     }
+            // }
             else
             {
                 transform.localPosition = Vector3.Lerp(startPosition, destPosition, GridManager.slideLerp);
@@ -66,11 +66,11 @@ public class TileScript : MonoBehaviour
         }
         else if (transform.localScale != Vector3.one) 
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Random.Range(0.0f, 0.3f));
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Random.Range(0.0f, 0.1f));
         }
         if (!isSeed)
         {   
-            transform.rotation *= Quaternion.Euler( 0, 0, Mathf.Sin(Time.time + swayOffset * 2 ) * 0.2f);
+            transform.rotation *= Quaternion.Euler( 0, 0, Mathf.Sin(Time.time + swayOffset) * 0.2f);
             //transform.GetChild(0).rotation *= Quaternion.Inverse(Quaternion.Euler( 0, 0, Mathf.Sin(Time.time * 2 + swayOffset) * 0.3f));
         }
     }
