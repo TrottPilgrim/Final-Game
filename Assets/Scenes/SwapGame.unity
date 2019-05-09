@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 991357075}
   - component: {fileID: 991357077}
   - component: {fileID: 991357076}
+  - component: {fileID: 991357078}
   m_Layer: 5
   m_Name: Background (1)
   m_TagString: Untagged
@@ -228,8 +229,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00045776, y: 4.2}
-  m_SizeDelta: {x: 1066.2, y: 591.6}
+  m_AnchoredPosition: {x: -0.00045776, y: 0}
+  m_SizeDelta: {x: 1066.2, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &991357076
 MonoBehaviour:
@@ -268,6 +269,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991357074}
   m_CullTransparentMesh: 0
+--- !u!114 &991357078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991357074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293737040094f75479d73564d10ce5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassIcons:
+  - {fileID: 21300000, guid: 76fd3438c9e04a340ac03bd65294ea49, type: 3}
+  - {fileID: 21300002, guid: 76fd3438c9e04a340ac03bd65294ea49, type: 3}
+  - {fileID: 21300004, guid: 76fd3438c9e04a340ac03bd65294ea49, type: 3}
+  - {fileID: 21300002, guid: 76fd3438c9e04a340ac03bd65294ea49, type: 3}
+  - {fileID: 21300000, guid: 76fd3438c9e04a340ac03bd65294ea49, type: 3}
 --- !u!1 &1009666756
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +340,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

@@ -27,7 +27,7 @@ public class TileScript : MonoBehaviour
     public Vector3 startPosition;
     public Vector3 destPosition;
     private bool inSlide = false;
-    private bool isSlerp = false;
+    //private bool isSlerp = false;
     float swayOffset;
     void Awake()
     {   

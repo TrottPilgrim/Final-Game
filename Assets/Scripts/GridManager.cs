@@ -131,7 +131,8 @@ public class GridManager : MonoBehaviour
                         GrowPlants(temp.type);
                         //transform.GetChild(0).SendMessage("BeginContact");
                         //playerScript.resetTurns(6);
-                        if (score == 1 && !changedState){
+                        // This is an extremely hacky implementation of transitioning between screens
+                        if (score == 5 && !changedState){
                             TransitionToNextState();
                         }
                     }
@@ -154,7 +155,7 @@ public class GridManager : MonoBehaviour
                         GrowPlants(temp.type);
                         //transform.GetChild(0).SendMessage("BeginContact");
                         //playerScript.resetTurns(6);
-                        if (score == 1 && !changedState){
+                        if (score == 5 && !changedState){
                             TransitionToNextState();
                         }
                     }
@@ -216,9 +217,10 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    //
     void TransitionToNextState()
     {
-        Debug.Log("I'm a believer");
+        //Debug.Log("I'm a believer");
         changedState = true;
         BackgroundAudio.Instance.nearingEnd.TransitionTo(3f);
         BackgroundAudio.Instance.GetComponents<AudioSource>()[1].PlayDelayed(3f);

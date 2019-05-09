@@ -24,6 +24,7 @@ public class BackgroundAudio : MonoBehaviour
     void Start()
     {
         Instance = this;
+        //Populates dictionary with clips from the above data structure
         foreach (NamedAudio s in stings)
         {
             stingsDict.Add(s.name, s.clip);
@@ -33,6 +34,8 @@ public class BackgroundAudio : MonoBehaviour
         stingSource = transform.GetChild(0).GetComponent<AudioSource>();
     }
 
+    //Input: s, a string that represent a keyword in a dictionary
+    //Out: Sets the sting audio source to a clip corresponding to that keyword in the dict and plays it.
     public void PlaySound(string s)
     {
         stingSource.clip = stingsDict[s][Random.Range(0, stingsDict[s].Length)];
