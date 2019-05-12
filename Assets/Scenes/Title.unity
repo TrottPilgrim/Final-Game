@@ -232,7 +232,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &695057134
 GameObject:
@@ -298,7 +298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &827709177
 GameObject:
@@ -333,7 +333,7 @@ Transform:
   - {fileID: 1784650013}
   - {fileID: 180429091}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &827709179
 AudioSource:
@@ -455,6 +455,9 @@ MonoBehaviour:
     clip:
     - {fileID: 8300000, guid: 81467ab754f4c7443b84652cf1fba49e, type: 3}
     - {fileID: 8300000, guid: 1394d4e65c161f84bb41f95c0dc61233, type: 3}
+  - name: greatjob
+    clip:
+    - {fileID: 8300000, guid: d6d6e86a6f3ac7545b027c33548ee49a, type: 3}
   stingSource: {fileID: 1784650014}
   titleScreen: {fileID: 24500006, guid: 7cde96d481144254cb5275e45a54a828, type: 2}
   swapGame: {fileID: 245946528646159366, guid: 7cde96d481144254cb5275e45a54a828, type: 2}
@@ -475,7 +478,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -634,7 +637,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &948598005
 RectTransform:
@@ -650,7 +653,7 @@ RectTransform:
   - {fileID: 1011332177}
   - {fileID: 1226020553}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -780,7 +783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.89999, y: -0.0000019073}
+  m_AnchoredPosition: {x: -0.89999, y: 0}
   m_SizeDelta: {x: 798.2, y: 471.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011332178
@@ -961,6 +964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff1e0c720288f449b56d8eece5f9144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flowerFab: {fileID: 7474593646916279069, guid: 3c178ced7328c2845b51855d72ffb142,
+    type: 3}
 --- !u!1 &1784650012
 GameObject:
   m_ObjectHideFlags: 0

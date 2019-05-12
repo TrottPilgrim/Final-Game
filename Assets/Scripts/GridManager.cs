@@ -8,10 +8,13 @@ public class GridManager : MonoBehaviour
 {
     //public static GridManager Instance;
     public static GameObject[,] tiles;
+    [Header("Prefabs")]
     public GameObject tilePrefab;
     public GameObject playerFab;
     public GameObject flowerFab;
     public GameObject gm;
+
+    [Header("Boilerplate Match Game Code")]
     public const int WIDTH = 9;
     public const int HEIGHT = 7;
 
@@ -22,15 +25,20 @@ public class GridManager : MonoBehaviour
     public GameObject explosion;
     PlayerScript playerScript;
     public static float slideLerp = -1f;
+    [Header("Lerp + Score")]
     public float lerpSpeed;
     
     //Score + text
     private int score;
     public Text scoreText;
+    // Keeps track of what the game's state is at the moment so that Update doesn't destroy the game
     bool changedState = false;
     bool transitioning = false;
+    bool hasNotPlayedEnding = true;
+    [Header("UI Elements")]
     public Image[] backgrounds;
     public Slider scoreMeter;
+    public Image endScreen;
 
     //public bool growth;
 
@@ -99,6 +107,14 @@ public class GridManager : MonoBehaviour
         if (transitioning)
         {
             LerpBtwBackgrounds(1);
+        }
+        if (changedState && !BackgroundAudio.Instance.GetComponents<AudioSource>()[1].isPlaying && hasNotPlayedEnding)
+        {
+            Debug.Log("Pop up game ending");
+            hasNotPlayedEnding = false;
+            endScreen.gameObject.SetActive(true);
+            BackgroundAudio.Instance.PlaySound("greatjob");
+            
         }
     }
     //Hasmatch returns an object that has a matching object vertically or horizontally
