@@ -20,7 +20,7 @@ public class AnimatedBG : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= 0.25)
         {
-            Debug.Log("hey");
+            //Debug.Log("hey");
             myBG.sprite = grassIcons[currentSprite];
             currentSprite++;
             if (currentSprite == grassIcons.Length)

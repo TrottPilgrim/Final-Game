@@ -10,12 +10,12 @@ public class GridManager : MonoBehaviour
     public static GameObject[,] tiles;
     public GameObject tilePrefab;
     public GameObject playerFab;
-    public const int WIDTH = 5;
+    public const int WIDTH = 9;
     public const int HEIGHT = 7;
 
     public const float xOffset = WIDTH / 2f - 0.5f;
     public const float yOffset = HEIGHT / 2f - 0.5f;
-
+    
     GameObject gridHolder;
     public GameObject explosion;
     PlayerScript playerScript;
