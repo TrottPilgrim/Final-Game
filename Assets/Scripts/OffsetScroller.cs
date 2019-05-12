@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    UNUSED!! this script was written when I was working animating the background.
+ */
+
 public class OffsetScroller : MonoBehaviour
 {
     public float scrollSpeed;

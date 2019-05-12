@@ -10,6 +10,7 @@ public class GridManager : MonoBehaviour
     public static GameObject[,] tiles;
     public GameObject tilePrefab;
     public GameObject playerFab;
+    public GameObject flowerFab;
     public const int WIDTH = 9;
     public const int HEIGHT = 7;
 
@@ -28,6 +29,7 @@ public class GridManager : MonoBehaviour
     bool changedState = false;
     bool transitioning = false;
     public Image[] backgrounds;
+    public Slider scoreMeter;
 
     //public bool growth;
 
@@ -74,6 +76,9 @@ public class GridManager : MonoBehaviour
     
     void FixedUpdate()
     {
+        if (scoreMeter.value < score) {
+            scoreMeter.value += Time.deltaTime / lerpSpeed;
+        }
         if (slideLerp < 0 && !Repopulate() && HasMatch()){
             RemoveMatches();
         }
@@ -88,7 +93,7 @@ public class GridManager : MonoBehaviour
         }
         if (transitioning)
         {
-            LerpBtwBackgrounds();
+            LerpBtwBackgrounds(1);
         }
     }
     //Hasmatch returns an object that has a matching object vertically or horizontally
@@ -129,10 +134,11 @@ public class GridManager : MonoBehaviour
                         Destroy(e2.gameObject, 3f);
                         scoreText.text = "SCORE: " + score;
                         GrowPlants(temp.type);
+                        GrowOuterPlant();
                         //transform.GetChild(0).SendMessage("BeginContact");
                         //playerScript.resetTurns(6);
                         // This is an extremely hacky implementation of transitioning between screens
-                        if (score == 5 && !changedState){
+                        if (score == 20 && !changedState){
                             TransitionToNextState();
                         }
                     }
@@ -153,9 +159,10 @@ public class GridManager : MonoBehaviour
                         Destroy(e2.gameObject, 3f);
                         scoreText.text = "SCORE: " + score;
                         GrowPlants(temp.type);
+                        GrowOuterPlant();
                         //transform.GetChild(0).SendMessage("BeginContact");
                         //playerScript.resetTurns(6);
-                        if (score == 5 && !changedState){
+                        if (score == 20 && !changedState){
                             TransitionToNextState();
                         }
                     }
@@ -227,15 +234,37 @@ public class GridManager : MonoBehaviour
         transitioning = true;
     }
 
-    void LerpBtwBackgrounds()
+    /*
+        LerpBtwBackgrounds fades in one background and fades out the previous background
+        x is used to indicate what background it is transitioning to
+        (ie, calling with x = 1 goes to background 1 from the previous background 0)
+     */
+    void LerpBtwBackgrounds(int x)
     {
-        Image bg0 = GameObject.Find("Background").GetComponent<Image>();
-        Image bg1 = GameObject.Find("Background (1)").GetComponent<Image>();
+        Image bg0 = backgrounds[x - 1];
+        Image bg1 = backgrounds[x];
         if (bg0.color.a > 0) {
             bg0.color -= new Color (0, 0, 0, 0.01f);
             bg1.color += new Color (0, 0, 0, 0.01f);
-
         }
+    }
+
+    //Grows decorative plants *outside* the border of the play area. 
+    void GrowOuterPlant(){
+        GameObject newFlower = Instantiate(flowerFab);
+        Vector3 minXY = tiles[0,0].transform.position;
+        float newX = Random.Range(0, 1f) > 0.5 ? 1 : -1;
+        float newY = Random.Range(0, 1f) > 0.5 ? 1 : -1;
+        newX *= minXY.x + Random.Range(2, 3f);
+        newY *= minXY.y + Random.Range(1.5f, 2.5f);
+        float c = Random.Range(0, 1f);
+        if (c > 0.66f) {
+            newX = Random.Range (-1 - WIDTH / 2, WIDTH / 2);
+        }
+        else if ( c > 0.33f) {
+            newY = Random.Range (-1 - HEIGHT / 2, HEIGHT / 2);
+        }
+        newFlower.transform.position = new Vector3 (newX, newY, 0);
     }
 
 

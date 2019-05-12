@@ -107,11 +107,7 @@ public class TileScript : MonoBehaviour
         //this.gameObject.name = this.gameObject.name + " " + destPosition.x + " " + destPosition.y + "|";
     }
 
-    // public void SetupSlerp(Vector2 newDestPos){
-    //     SetupSlide(newDestPos);
-    //     isSlerp = true;
-    // }
-
+    //Grows a "seedling" into a full plant
     public void GrowUp() {
         isSeed = false;
         this.tag = "Untagged";
