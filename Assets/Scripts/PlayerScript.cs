@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+// using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -54,9 +54,14 @@ public class PlayerScript : MonoBehaviour
                 //BackgroundAudio.Instance.PlaySound("click");
                 RotateCCW();
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            // if (Input.GetKeyDown(KeyCode.Space))
+            // {
+            //     SceneManager.LoadScene("SwapGame");
+            // }
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SceneManager.LoadScene("SwapGame");
+                Debug.Log("quitting");
+                Application.Quit(0);
             }
         }
         if (inSlide)
@@ -166,10 +171,10 @@ public class PlayerScript : MonoBehaviour
     //     //turnsText.text = "" + turnsRemaining;
     // }
 
-    public void EndGame(){
-        Debug.Log("Game over!");
-        SceneManager.LoadScene("EndScreen");
-    }
+    // public void EndGame(){
+    //     Debug.Log("Game over!");
+    //     SceneManager.LoadScene("EndScreen");
+    // }
 
     void SwapTransformHelper(GameObject g1, GameObject g2) {
         // Vector2 g1Pos = g1.transform.localPosition;

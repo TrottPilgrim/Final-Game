@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     public GameObject tilePrefab;
     public GameObject playerFab;
     public GameObject flowerFab;
+    public GameObject gm;
     public const int WIDTH = 9;
     public const int HEIGHT = 7;
 
@@ -71,6 +72,10 @@ public class GridManager : MonoBehaviour
         playerScript = player.GetComponent<PlayerScript>();
         player.transform.parent = gridHolder.transform;
         player.transform.localPosition = new Vector2(WIDTH - xOffset, HEIGHT - yOffset);
+        // for (int i = 0; i < 1000; i++)
+        // {
+        //     GrowOuterPlant();
+        // }
     }
 
     
@@ -247,22 +252,26 @@ public class GridManager : MonoBehaviour
             bg0.color -= new Color (0, 0, 0, 0.01f);
             bg1.color += new Color (0, 0, 0, 0.01f);
         }
+        else
+        {
+            transitioning = false;
+        }
     }
 
     //Grows decorative plants *outside* the border of the play area. 
     void GrowOuterPlant(){
-        GameObject newFlower = Instantiate(flowerFab);
+        GameObject newFlower = Instantiate(flowerFab, gm.transform);
         Vector3 minXY = tiles[0,0].transform.position;
         float newX = Random.Range(0, 1f) > 0.5 ? 1 : -1;
         float newY = Random.Range(0, 1f) > 0.5 ? 1 : -1;
-        newX *= minXY.x + Random.Range(2, 3f);
-        newY *= minXY.y + Random.Range(1.5f, 2.5f);
+        newX *= minXY.x + Random.Range(1f, 4f);
+        newY *= minXY.y + Random.Range(1f, 4f);
         float c = Random.Range(0, 1f);
         if (c > 0.66f) {
-            newX = Random.Range (-1 - WIDTH / 2, WIDTH / 2);
+            newX = Random.Range (- WIDTH / 2, WIDTH / 2);
         }
         else if ( c > 0.33f) {
-            newY = Random.Range (-1 - HEIGHT / 2, HEIGHT / 2);
+            newY = Random.Range ( - HEIGHT / 2, HEIGHT / 2);
         }
         newFlower.transform.position = new Vector3 (newX, newY, 0);
     }
