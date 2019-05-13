@@ -12,7 +12,7 @@ public class ExitScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             this.gameObject.SetActive(false);
-            BackgroundAudio.Instance.swapGame.TransitionTo(0);
+            BackgroundAudio.Instance.swapGame.TransitionTo(1f);
         }
     }
 }
