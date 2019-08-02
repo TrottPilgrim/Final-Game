@@ -1,4 +1,4 @@
-# Final-Game-Repo
+# Proplift
 The repo for the final game project for Intro to Game Development
 
 [Itch.io page](https://thomas-lim.itch.io/proplift)  
